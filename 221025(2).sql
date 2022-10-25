@@ -119,6 +119,13 @@ where dept_code in ('D5','D9') and to_char(hire_date,'yyyy')='2004' ;
 select emp_name "직원명", hire_date "입사일", -- quit_yn,  quit_date, nvl2(quit_date,quit_date,to_date(sysdate)) "근무여부",
          trunc( sysdate - ( nvl2(quit_date,quit_date,to_date(hire_date)) )) "근무일수"
 from employee;
+                                                          
+                                                          
+-- 다시 계산 
+select  emp_name "직원명", hire_date "입사일", -- quit_date ,
+       trunc ( case  when quit_yn='Y' then ( quit_date  - hire_date )  when quit_yn='N' then ( sysdate  - hire_date ) end ) ||'일'   "근무일수"  
+from employee;        
+                                                          
 
 -- 10. 직원명, 부서코드, 생년월일, 나이(만나이) 조회
 --   단, 생년월일은 주민번호에서 추출해서, 
