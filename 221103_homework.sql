@@ -1,6 +1,7 @@
- 221103 실습문제 
+221103 실습문제 
 --## @실습문제 : CREATE
 -- 테이블을 적절히 생성하고, 테이블, 컬럼주석을 추가하세요.
+
 --1. 첫번째 테이블 명 : EX_MEMBER
 --* MEMBER_CODE(NUMBER) - 기본키                        -- 회원전용코드 
 --* MEMBER_ID (varchar2(20) ) - 중복금지                    -- 회원 아이디
@@ -49,24 +50,31 @@ select * from EX_MEMBER;
 -- 1. 테이블 생성 
 create table EX_MEMBER_NICKNAME (
             MEMBER_CODE NUMBER,        -- 회원전용코드
-            MEMBER_NICKNAME varchar2(100) not null,    
+            MEMBER_NICKNAME varchar2(100) not null,      -- 회원 이름
     
             constraint   FK_EX_MEMBER_NICKNAME_MEMBER_CODE foreign key (MEMBER_CODE) references  EX_MEMBER (MEMBER_CODE), -- fk 
             constraint  PK_EX_MEMBER_NICKNAME_MEMBER_CODE primary key ( MEMBER_CODE )
 );
 
-select * from EX_MEMBER
+select * from EX_MEMBER_NICKNAME;
+
+--2. 테이블 주석 /컬럼 주석 추가 
+comment  on table EX_MEMBER_NICKNAME is '회원 닉네임 관리 테이블';
+comment on column EX_MEMBER_NICKNAME.MEMBER_CODE is '회원전용코드';
+comment on column EX_MEMBER_NICKNAME.MEMBER_NICKNAME is '회원 이름';
 
 
 
 
-
-----------------------------------------------------------------------
- < 테이블주석 / 컬럼주석 / 제약조건  조회해보기 > 
+---------------------------------------------------------------------------------------
+< 테이블주석 / 컬럼주석 / 제약조건  조회해보기 > 
 
 --** 주석조회해볼까 
 select *  from user_tab_comments  where table_name = 'EX_MEMBER';
 select * from user_col_comments where table_name = 'EX_MEMBER';
+
+select *  from user_tab_comments  where table_name = 'EX_MEMBER_NICKNAME';
+select * from user_col_comments where table_name = 'EX_MEMBER_NICKNAME';
 
 -- ** 제약조건 조회해볼까 
 select  constraint_name,
@@ -81,9 +89,8 @@ from user_constraints uc   join user_cons_columns ucc
 where uc.table_name = 'EX_MEMBER';
 -- Q. 제약조건을 안건 name은 왜 이렇게 조회하면 안뜨니 ? 
     
-
-
--- <  test  >  
+---------------------------------------------------------------------------------------
+<  test  >  
 -- 멤버테이블에 먼저 값넣고 
 insert into EX_MEMBER values( 1, 'jinnn2','1234',null,'서울시','여','01012341234');
 insert into EX_MEMBER values( 2, 'john2','1234','john','US','남','010345345');
@@ -107,8 +114,8 @@ insert into EX_MEMBER_NICKNAME  values(3,'지니지니');
 select * from  EX_MEMBER;
 select * from  EX_MEMBER_NICKNAME;
 
-
--- <  모르는거 /오류  >  
+---------------------------------------------------------------------------------------
+ <  모르는거 /오류  >  
 Q. 내가 FK_MEMBER_CODE  이렇게만 썼을 때 하기와 같은 오류 발생 
 근데 테이블이 다른데, 컬럼의 기존 제약 조건의 이름이 중복되면 안되는건가 ???
 --오류 보고 -
