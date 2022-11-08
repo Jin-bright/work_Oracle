@@ -38,12 +38,13 @@ begin
         into n        
         from dual;
 
-        if n= 1   then dbms_output.put_line('홀');
-        else   dbms_output.put_line('짝');
+      dbms_output.put_line('** 1이면 앞 / 0이면 뒤 **');
+
+        if n= 1   then dbms_output.put_line('앞');
+        else   dbms_output.put_line('뒤');
         end if;
         
 end;
 /
-
 
 --select trunc(DBMS_RANDOM.VALUE (0,2))  from dual
