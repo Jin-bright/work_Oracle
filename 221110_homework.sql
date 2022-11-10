@@ -102,10 +102,10 @@ rollback;
 ★★★★★ 질문 ★★★★★
 
 Q. 트리거 만들때, begin 절에서 insert into ~~ 로 값을 넣을때  꼭 :old 나 :new 이런걸 써야 되는건가 ? 
- 날짜 형식은 저런거 하면 오류나던데 ,, 물어보기  
+ 날짜 형식은 어떻게 넣어야 되는걸까 .. 
 --  values( EMP_ID, EMP_NAME, EMP_NO, EMAIL, PHONE, DEPT_CODE, JOB_CODE, SAL_LEVEL, SALARY, BONUS, MANAGER_ID, 
 --                        HIRE_DATE, to_char(20221110, 'yyyy/mm/dd' );
-ㄴ 이거 안되는건가  ? 아님 오류있나 ^^..
+ㄴ 이거 안되는건가? 안될거같애,, 특정값이 아니니까 
 
 Q. 테이블 만들 때 다른 테이블 가져오기 ++ 추가로 새로운 컬럼 만들기 동시에 못함 ???  
 
